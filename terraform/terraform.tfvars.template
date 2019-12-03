@@ -1,0 +1,46 @@
+#################
+# Vars
+#################
+aws_credential          = "/root/.aws/credentials"
+aws_profile             = "my_profile_name"
+aws_region              = "ap-southeast-1"
+vpc_id                  = "vpc-abvd1234"                            # vpc id
+redis_sg_ingress_cidr   = ["172.31.27.0/24", "192.168.0.0/16"]      # cidr open for inbound port 6379
+redis_sg_egress_cidr    = ["0.0.0.0/0"]                             # cidr open for outbound
+elasticache_list = [
+    {
+      name                   = "cluster-1"
+      instance_type          = "cache.t3.micro"
+      number_node            = 3
+      engine_version         = "5.0.5"
+      subnet_group_name      = "test"
+      parameter_group_name   = "default.redis5.0"
+      maintenance_window     = "sat:18:00-sat:19:00"
+      snapshot_window        = "17:00-18:00"
+      snapshot_retention_limit  = 1
+    },
+    {
+      name                   = "cluster-2"
+      instance_type          = "cache.t3.micro"
+      number_node            = 5
+      engine_version         = "5.0.5"
+      subnet_group_name      = "my_subnetgroup"
+      parameter_group_name   = "my_redis_pg"
+      maintenance_window     = "mon:10:00-mon:11:00"
+      snapshot_window        = "17:00-18:00"
+      snapshot_retention_limit  = 2
+    },
+    {
+      name                   = "cluster-3"
+      instance_type          = "cache.t3.micro"
+      number_node            = 2
+      engine_version         = "5.0.5"
+      subnet_group_name      = "test"
+      parameter_group_name   = "default.redis5.0"
+      maintenance_window     = "sat:18:00-sat:19:00"
+      parameter_group_name   = "default.redis5.0"
+      maintenance_window     = "sat:18:00-sat:19:00"
+      snapshot_window        = "17:00-18:00"
+      snapshot_retention_limit  = 3
+    }
+ ]
